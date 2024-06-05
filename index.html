@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+
+  <body>
+    <div class="content-wrapper">
+      <section class="sidebar">
+        <h1><span class="shelfie">shelfie</span>:<br />a Library</h1>
+        <div class="summary">
+          <h2>Stats</h2>
+          <p>3 Books</p>
+          <p>2 Read</p>
+          <p>1 Unread</p>
+          <p>Placeholder for pie chart that shows categories</p>
+        </div>
+
+        <div class="form-wrapper">
+          <form class="add-book-form" action="#">
+            <div class="form-row">
+              <label for="title"
+                >Title<span aria-label="required">*</span></label
+              >
+              <input id="title" name="title" type="text" required />
+            </div>
+
+            <div class="form-row">
+              <p>Author</p>
+              <div class="col">
+                <label for="first_name">First</label>
+                <input id="first_name" name="first_name" type="text" />
+              </div>
+              <div class="col">
+                <label for="last_name">Last<span aria-label="required">*</span></label>
+                <input id="last_name" name="last_name" type="text" required />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <label for="category">Category</label>
+              <select name="category" id="category">
+                <optgroup label="Non-fiction">
+                  <option value="Art">Art</option>
+                  <option value="Biography">Biography</option>
+                  <option value="History">History</option>
+                  <option value="Politics">Politics</option>
+                  <option value="Science">Science</option>
+                  <option value="Self-help">Self-help</option>
+                </optgroup>
+
+                <optgroup label="Fiction">
+                  <option value="Adventure">Adventure</option>
+                  <option value="Fantasy">Fantasy/Dragon Smut</option>
+                  <option value="Historical">Historical</option>
+                  <option value="Mystery">Mystery</option>
+                  <option value="Romance">Romance</option>
+                  <option value="Scifi">Sci-fi</option>
+                  <option value="Western">Western</option>
+                  <option value="YA">Y.A.</option>
+                </optgroup>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <fieldset>
+                <legend>Status</legend>
+                <input type="radio" name="read_status" id="unread" value="Unread" checked>
+                <label for="unread">Unread</label>
+                <input type="radio" name="read_status" id="read" value="Read">
+                <label for="read">Read</label>
+              </fieldset>
+            </div>
+
+            <div class="add-btn-container">
+              <button class="add-btn" type="submit">Add Book</button>
+            </div>
+          </form>
+        </div>
+      </section>
+      <main class="main-content">
+        <div class="cards"></div>
+      </main>
+    </div>
+  </body>
+</html>
