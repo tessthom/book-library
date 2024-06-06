@@ -58,9 +58,6 @@ function createBookObj(inputs) {
   return book;
 }
 
-// UI REF VAR
-const cardContainer = document.querySelector('.cards');
-
 function createCard({ title, author, category, read }, index) {
   const newCard = document.createElement('div');
   newCard.classList.add('card');
@@ -83,6 +80,7 @@ function createCard({ title, author, category, read }, index) {
 
 // Fn that loops through the library and displays each book on the page
 function displayLibrary() {
+  const cardContainer = document.querySelector('.cards');
   const fragment = new DocumentFragment();
 
   myLibrary.forEach((book, index) => {
@@ -91,12 +89,39 @@ function displayLibrary() {
 
   // cardContainer.append(fragment);
   cardContainer.replaceChildren(fragment);
-
 }
+
+let dirty = '<p>Hello, <script>alert("world");</script></p>';
+let clean = DOMPurify.sanitize(dirty);
+console.log(clean);
+
 // TODO: Write a fn that updates the stats after new book added.
 function updateStats() {
   // iterate through library accumulating values (USE REDUCE??)
   // then update UI with new values
+  const stats = {
+    read: 0,
+    unread: 0,
+    totalFiction: 0,
+    totalNonFiction: 0,
+    categories: {
+      art: 0,
+      biography: 0,
+      history: 0,
+      politics: 0,
+      science: 0,
+      selfhelp: 0,
+      adventure: 0,
+      fantasy: 0,
+      mystery: 0,
+      romance: 0,
+      scifi: 0,
+      western: 0,
+      ya: 0,
+    }
+  };
+  // TODO: should i use reduce() to create totals for each?
+  myLibrary.forEach();
 }
 
 // In the event handler that calls displayLibrary, when checking what card's delete button got clicked, can check the dataset-index value on the parent div.card to determine which card to delete
