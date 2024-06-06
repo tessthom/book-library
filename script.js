@@ -22,10 +22,10 @@ myLibrary.push(new Book('Dune', { firstName: 'Frank', lastName: 'Herbert' }, 'Sc
 
 // Make and return new book object
 function createBookObj(inputs) {
-  const title = inputs['title'].value;
-  const author = { firstName: inputs['first_name'].value, lastName: inputs['last_name'].value };
-  const category = inputs['category'].value;
-  const read = inputs['read'].checked;
+  const title = inputs['title'];
+  const author = { firstName: inputs['first_name'], lastName: inputs['last_name'] };
+  const category = inputs['category'];
+  const read = inputs['read_status'];
   
   const book = new Book(title, author, category, read);
   
@@ -62,6 +62,10 @@ function createCard({ title, author, category, read }, index) {
     </div>
     <button class="delete-card-btn">Delete Book</button>
   `;
+
+  if (read) {
+    newCard.querySelector('input[type="checkbox"]').checked = true;
+  }
 
   return newCard;
 }
@@ -119,9 +123,23 @@ window.onload = displayLibrary();
 // Add Book Form Submit handler
 document.querySelector('.add-book-form').addEventListener('submit', function (e) {
   e.preventDefault();
-  const inputs = this.elements;
-  console.log(inputs);
-  const newBook = createBookObj(inputs);
+
+  const formData = new FormData(this);
+  const cleanInputs = {};
+
+  for (let [name, value] of formData) {
+    if (name === 'read_status') {
+      cleanInputs[name] = value === 'Read' ? true : false;
+    } else {
+      cleanInputs[name] = DOMPurify.sanitize(value);
+    }
+  }
+
+
+  // const inputs = this.elements;
+  console.log(cleanInputs);
+  const newBook = createBookObj(cleanInputs);
+  console.log(newBook);
   addBookToLibrary(newBook);
   displayLibrary();
   updateStats();

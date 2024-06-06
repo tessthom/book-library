@@ -245,7 +245,7 @@ button:active {
   right: 0;
   bottom: 0;
 
-  background-color: var(--m-green);
+  background-color: var(--luminous-vivid-amber);
   border: var(--black-border);
   border-radius: 1em;
   transition: 300ms;
@@ -265,7 +265,7 @@ button:active {
   transition: 300ms;
 }
 input:checked + .slider {
-  background-color: var(--luminous-vivid-amber);
+  background-color: var(--m-green);
 }
 input:focus + .slider {
   box-shadow: 0 0 1px var(--jet);
