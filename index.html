@@ -15,13 +15,41 @@
   <body>
     <div class="content-wrapper">
       <section class="sidebar">
-        <div class="summary">
-          <h2>Stats</h2>
-          <p>3 Books</p>
-          <p>2 Read</p>
-          <p>1 Unread</p>
-          <p>Placeholder for pie chart that shows categories</p>
+        <div class="stats-wrapper">
+          <span class="stats-heading-wrapper">
+            <svg
+              class="brain"
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              fill="#ffffff"
+              viewBox="0 0 256 256"
+            >
+              <path
+                d="M224,200h-8V40a8,8,0,0,0-8-8H152a8,8,0,0,0-8,8V80H96a8,8,0,0,0-8,8v40H48a8,8,0,0,0-8,8v64H32a8,8,0,0,0,0,16H224a8,8,0,0,0,0-16ZM160,48h40V200H160ZM104,96h40V200H104ZM56,144H88v56H56Z"
+              ></path>
+            </svg>
+            <h2>Stats</h2>
+          </span>
+
+          <div class="stats-totals-wrapper">
+            <p>Total books: <span class="total-books"></span></p>
+            <p>Read: <span class="total-read"></span></p>
+            <p>Unread: <span class="total-unread"></span></p>
+          </div>
+
+          <div class="piechart-wrapper">
+            <div class="piechart">
+              <p>Placeholder for pie chart that shows categories</p>
+            </div>
+          </div>
+
+          <div class="stats-summary-wrapper">
+            <p class="summary-text">Big fan of dragon smut, eh? *Placeholder for future dynamic cheeky summary of library content.</p>
+          </div>
         </div>
+
+        <p>*placeholder for worm illustration</p>
 
         <div class="new-book-btn-wrapper">
           <button class="new-book-btn pill" type="button">New Book</button>
@@ -31,28 +59,21 @@
           <div class="dialog-wrapper">
             <h2>New Book</h2>
             <form class="add-book-form hidden" method="dialog">
-              <div class="form-row">
-                <label for="title"
-                  >Title</label
-                >
+              <div class="form-col">
+                <label for="title">Title</label>
                 <input id="title" name="title" type="text" required autofocus />
               </div>
 
-              <div class="form-row">
-                <p>Author</p>
-                <div class="col">
-                  <label for="first_name">First</label>
-                  <input id="first_name" name="first_name" type="text" />
-                </div>
-                <div class="col">
-                  <label for="last_name"
-                    >Last</label
-                  >
-                  <input id="last_name" name="last_name" type="text" required />
-                </div>
+              <div class="form-col">
+                <label for="last_name">Last name</label>
+                <input id="last_name" name="last_name" type="text" required />
+              </div>
+              <div class="form-col">
+                <label for="first_name">First name</label>
+                <input id="first_name" name="first_name" type="text" />
               </div>
 
-              <div class="form-row">
+              <div class="form-col">
                 <label for="category">Category</label>
                 <select name="category" id="category">
                   <optgroup label="Non-fiction">
@@ -76,24 +97,30 @@
                 </select>
               </div>
 
-              <div class="form-row">
+              <div class="form-col">
                 <fieldset>
                   <legend>Status</legend>
-                  <input
-                    type="radio"
-                    name="read_status"
-                    id="unread"
-                    value="Unread"
-                    checked
-                  />
-                  <label for="unread">Unread</label>
-                  <input
-                    type="radio"
-                    name="read_status"
-                    id="read"
-                    value="Read"
-                  />
-                  <label for="read">Read</label>
+                  <div class="form-row">
+                    <div class="radio-wrapper">
+                      <input
+                        type="radio"
+                        name="read_status"
+                        id="unread"
+                        value="Unread"
+                        checked
+                      />
+                      <label for="unread">Unread</label>
+                    </div>
+                    <div class="radio-wrapper">
+                      <input
+                        type="radio"
+                        name="read_status"
+                        id="read"
+                        value="Read"
+                      />
+                      <label for="read">Read</label>
+                    </div>
+                  </div>
                 </fieldset>
               </div>
 
@@ -102,8 +129,8 @@
               </div>
 
               <div class="form-row">
-                <button class="close-dialog-btn" type="button">
-                  Close
+                <button class="close-dialog-btn" type="button" aria-label="close">
+                  X
                 </button>
               </div>
             </form>

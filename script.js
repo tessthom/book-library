@@ -1,3 +1,5 @@
+// TODO: Find API to add thumbnails of book covers to cards based on title search. Use default cover not found.
+
 const myLibrary = [];
 
 // Book constructor fn (will refactor using class later)
@@ -50,7 +52,7 @@ function createCard({ title, author, category, read }, index) {
     <div class="book-text">
       <h3>${title}</h3>
       <div class="book-details-wrapper">
-        <p>${author.lastName}, ${author.firstName}</p>
+        <p class="author">${author.lastName}, ${author.firstName}</p>
         <p>${category}</p>
         <div class="read-slider-wrapper">
           <label class="switch">
@@ -80,13 +82,17 @@ function displayLibrary() {
     // Add card to larger document fragment
     fragment.append(createCard(book, index));
   });
+  
   // Update the card container's content
   cardContainer.replaceChildren(fragment);
+
+  // Update stats
+  updateStats();
 }
 
-// TODO: Write a fn that updates the stats after new book added.
+// TODO: Update this fn to use stats object after chart API implemented. First iteration of project only needs to update totals paragraphs above piechart.
 function updateStats() {
-  // iterate through library accumulating values (USE REDUCE??)
+  // iterate through library accumulating values 
   // then update UI with new values
   const stats = {
     read: 0,
@@ -109,8 +115,21 @@ function updateStats() {
       ya: 0,
     }
   };
-  // TODO: should i use reduce() to create totals for each?
-  // myLibrary.forEach();
+
+  const totalBooks = document.querySelector('.total-books');
+  const totalRead = document.querySelector('.total-read');
+  const totalUnread = document.querySelector('.total-unread');
+
+  const totalsObj = myLibrary.reduce((accObj, currBook) => {
+    accObj.total += 1;
+    accObj.read += currBook.read ? 1 : 0;
+    
+    return accObj;
+  }, { total: 0, read: 0 });
+
+  totalBooks.innerText = totalsObj.total;
+  totalRead.innerText = totalsObj.read;
+  totalUnread.innerText = totalsObj.total - totalsObj.read;
 }
 
 // Initial display of cards:
@@ -135,7 +154,7 @@ window.onload = displayLibrary();
   
   document.querySelector('.close-dialog-btn').addEventListener('click', function(e) {
     // TODO: UNCOMMENT THIS LINE BEFORE PROD
-    // e.preventDefault();
+    e.preventDefault();
     dialog.close();
     openDialogBtn.focus();
   });
@@ -174,7 +193,7 @@ document.querySelector('.add-book-form').addEventListener('submit', function(e) 
   displayLibrary();
   updateStats();
   // TODO: Uncomment this line after dev session to clear form after submission:
-  // this.reset();
+  this.reset();
 });
 
 // Card buttons handler
