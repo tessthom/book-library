@@ -13,7 +13,7 @@ function Book(title, author, category, read) {
 // Toggle read status
 Book.prototype.toggleRead = function (readPara) {
   this.read = !this.read;
-  readPara.innerText = this.read ? 'Read' : 'Not read yet!';
+  readPara.innerText = this.read ? 'Read' : 'Not read yet';
 }
 
 // Make 3 example cards using the Book constructor in order to show the card UI during dev and still have access to the methods defined on the prototype:
