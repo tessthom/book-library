@@ -96,8 +96,9 @@ h6 {
 h1 {
   font-family: 'Caprasimo';
   font-size: 3rem;
+  color: var(--jet);
 }
-button::before {
+button.pill::before {
   padding-left: 1rem;
   padding-right: 1rem;
   display: flex;
@@ -106,31 +107,21 @@ button::before {
 
   background-color: var(--vivid-red);
   border-radius: 1.5em;
-  content: '';
   inset: 0;
 
   position: absolute;
   z-index: 2;
-
 }
-.add-btn::before {
-  content: 'Add Book';
-  background-color: var(--m-green);
-  color: var(--jet);
-}
-.delete-card-btn::before {
-  content: 'Delete Book';
-}
-button {
+button.pill {
   padding: 0.5em 1em;
   border: var(--black-border);
   border-radius: 1.5em;
   position: relative;
-  
+
   background-color: var(--vivid-red);
   color: #fff;
   font-weight: 500;
-  
+
   display: inline-flex;
   justify-content: center;
   line-height: 1;
@@ -138,15 +129,16 @@ button {
   text-align: center;
   width: 100%;
   z-index: 2;
-  
+
   transition: transform 200ms ease-in;
 }
-button::after {
+button.pill::after {
   position: absolute;
   left: 0.25rem;
   top: 0.25rem;
   width: 100%;
   height: 100%;
+
   background-image: linear-gradient(45deg, var(--jet) 25%, transparent 25%),
     linear-gradient(-45deg, var(--jet) 25%, transparent 25%),
     linear-gradient(45deg, transparent 75%, var(--jet) 75%),
@@ -160,18 +152,51 @@ button::after {
 
   transition: transform 200ms ease-in;
 }
-button:active {
+button.pill:active {
   transform: translateY(4px);
 
   &::after {
     transform: translateY(-4px);
   }
 }
-.delete-card-btn {
-  width: calc(100% - 1em);
-  margin-right: 4px;
-  align-self: center;
+/* Individual Buttons */
+.new-book-btn::before {
+  content: 'New Book';
+  background-color: var(--m-green);
+  color: var(--jet);
 }
+.cancel-dialog-btn {
+  width: 100%;
+  color: var(--jet);
+  text-align: center;
+  font-size: 0.85em;
+}
+.cancel-dialog-btn:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+.cancel-dialog-btn:active {
+  transform: none;
+
+  &::after {
+    transform: none;
+  }
+}
+.add-btn.pill::before {
+  content: 'Add Book';
+  background-color: var(--m-green);
+  color: var(--jet);
+}
+.delete-card-btn::before {
+  content: 'Delete Book';
+}
+.card button.pill {
+  width: calc(100% - 1.5em);
+  align-self: center;
+  margin-right: 3px;
+}
+
+/* Main Elements */
 .content-wrapper {
   width: 100%;
   height: 100vh;
@@ -198,9 +223,8 @@ button:active {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* gap: 0.75rem; */
 
-  padding-bottom: 0.75em;
+  padding-bottom: 1rem;
 
   background: var(--warm-white);
   color: var(--ocean-dark);
@@ -208,19 +232,19 @@ button:active {
   border-radius: 0.25rem;
 }
 .card h3 {
-  padding: 0.5em;
+  padding: 0.75rem;
   background-color: var(--jet);
   color: #fff;
   width: 100%;
 }
 .book-details-wrapper {
-  padding: 0.5em;
+  padding: 0.5em 0.75em;
 }
 .book-details-wrapper p {
   line-height: 1.5;
   font-weight: 500;
 }
-/* toggle switch */
+/* Toggle Slider */
 .read-slider-wrapper {
   display: flex;
   align-items: center;
@@ -253,8 +277,8 @@ button:active {
 .slider::before {
   position: absolute;
   content: '';
-  left: .15em;
-  bottom: .1em;
+  left: 0.15em;
+  bottom: 0.1em;
 
   width: 1em;
   height: 1em;
@@ -273,7 +297,21 @@ input:focus + .slider {
 input:checked + .slider::before {
   transform: translateX(1.1em);
 }
+
+/* Dialog */
+::backdrop {
+  background: var(--jet);
+  opacity: 0.85;
+}
+.dialog-wrapper {
+  padding: 1em;
+  background-color: var(--pale-pink);
+}
+
 /* Form */
-input[type="radio"] {
+form input {
+
+}
+input[type='radio'] {
   accent-color: var(--jet);
 }
