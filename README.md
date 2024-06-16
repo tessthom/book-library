@@ -1,4 +1,4 @@
-# Library App for my Fiance
+# Small Library App 1.0
 
 ## Purpose:
-This build is an excuse to practice styling and working with forms, and to play around with a new aesthetic. Back end to store library data in progress.
+A project to practice reformating
