@@ -343,7 +343,7 @@ h1 {
   background-color: var(--luminous-vivid-amber);
   border: var(--black-border);
   border-radius: 1em;
-  transition: 300ms;
+  transition: transform 300ms;
 }
 .slider::before {
   position: absolute;
@@ -357,17 +357,27 @@ h1 {
   border: var(--black-border);
   border-radius: 50%;
 
-  transition: 300ms;
+  transition: transform 300ms;
 }
-input:checked + .slider {
+/* input:checked + .slider {
   background-color: var(--m-green);
+} */
+.slider {
+  background-color: var(--luminous-vivid-amber);
+}
+.slider.checked {
+  background-color: var(--m-green);
+
+  &::before {
+    transform: translateX(1.1em);
+  }
 }
 input:focus + .slider {
   box-shadow: 0 0 1px var(--jet);
 }
-input:checked + .slider::before {
+/* input:checked + .slider::before {
   transform: translateX(1.1em);
-}
+} */
 
 /* Dialog */
 dialog {
