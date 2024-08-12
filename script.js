@@ -220,7 +220,7 @@ class BookCardHandler {
     const target = e.target;
     if (target.classList.contains('delete-card-btn')) {
       this.handleDeleteClick();
-    } else if (target.classList.contains('.read-checkbox')) {
+    } else if (target.classList.contains('read-checkbox')) {
       this.handleToggleReadClick();
     }
   }
@@ -240,9 +240,9 @@ class BookCardHandler {
   updateCardUI() {
     // updates card DOM to reflect book's new property values/readStatus.
     const book = this.#library.getBookByIndex(this.#bookIndex);
-    const slider = cardElement.querySelector('.slider');
-    const readPara = cardElement.querySelector('.read-para');
-    const checkbox = cardElement.querySelector('.read-checkbox');
+    const slider = this.#cardElement.querySelector('.slider');
+    const readPara = this.#cardElement.querySelector('.read-para');
+    const checkbox = this.#cardElement.querySelector('.read-checkbox');
 
     slider.classList.toggle('checked', book.readStatus);
     slider.classList.toggle('unchecked', !book.readStatus);
