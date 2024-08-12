@@ -251,7 +251,6 @@ class BookCardHandler {
   }
 }
 
-// TODO:
 // BookFormHandler class
   // Private fields: #form, #dialog, #library, #libraryView
   // Constructor: accepts library, libraryView
@@ -371,6 +370,24 @@ class StatsManager {
 
   constructor(library) {
     this.#library = library;
+    this.updateStatistics(); // Init stats on creation
+  }
+
+  // Public methods
+  updateStatistics() {
+    // Calculate stats
+    const totalBooks = this.#library.bookCount;
+    const totalRead = this.#library.readBooksCount;
+    const totalUnread = this.#library.unreadBooksCount;
+
+    // Update the DOM with stats
+    const totalBooksEl = document.querySelector('.total-books');
+    const totalReadEl = document.querySelector('.total-read');
+    const totalUnreadEl = document.querySelector('.total-unread');
+
+    totalBooksEl.textContent = totalBooks;
+    totalReadEl.textContent = totalRead;
+    totalUnreadEl.textContent = totalUnread;
   }
 }
 
@@ -397,7 +414,7 @@ class LibraryView {
 
     const newBookBtn = document.querySelector('.new-book-btn');
     this.#formHandler = new BookFormHandler(this.#library, this, newBookBtn);
-    this.#statsManager = new StatsManager();
+    this.#statsManager = new StatsManager(library);
 
     // Set up click event listener for "New Book" button, cb should be showForm?
     // TODO: should this call an initForm() method instead of showForm()? or does creating a new instance of form handler do the same stuff you'd imagine an initForm method would do?
@@ -426,6 +443,7 @@ class LibraryView {
 
     // Update stats
     // this.#library.updateStats();
+    this.#statsManager.updateStatistics();
 
     // called by App.init and after library changes
   }
@@ -459,6 +477,7 @@ class App1 {
 
   init() {
     this.#libraryView.displayLibrary();
+    this.#libraryView.statsManager.updateStatistics();
   }
 }
 
